@@ -4,14 +4,14 @@ __generated_with = "0.16.5"
 app = marimo.App(width="medium")
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     import marimo as mo
     from pathlib import Path
     return Path, mo
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(Path):
     aoc_dirs = [d for d in Path(".").glob("aoc_*") if d.is_dir()]
 
@@ -30,7 +30,7 @@ def _(Path):
     return available_years, year_day_to_path, year_to_days
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(available_years, mo):
     year_dropdown = mo.ui.dropdown(
         options=available_years,
@@ -40,7 +40,7 @@ def _(available_years, mo):
     return (year_dropdown,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo, year_dropdown, year_to_days):
     available_days = year_to_days.get(year_dropdown.value, []) # RRR: can't use year_dropdown value from same cell
 
@@ -54,7 +54,7 @@ def _(mo, year_dropdown, year_to_days):
     return (day_dropdown,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(day_dropdown, year_day_to_path, year_dropdown):
     selected_year = year_dropdown.value
     selected_day = day_dropdown.value
@@ -63,8 +63,8 @@ def _(day_dropdown, year_day_to_path, year_dropdown):
     return selected_day, selected_year
 
 
-@app.cell
-def show_a_day(selected_day, selected_year):
+@app.cell(hide_code=True)
+def dynamic_import(selected_day, selected_year):
     import importlib
     parent = importlib.import_module(f"aoc_{selected_year}")
     module = importlib.import_module(f"aoc_{selected_year}.day_{selected_day}")
@@ -73,7 +73,7 @@ def show_a_day(selected_day, selected_year):
 
 
 @app.cell
-async def _(app):
+async def show_results(app):
     result = await app.embed()
     result.output
     return

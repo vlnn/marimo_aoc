@@ -23,7 +23,6 @@ def _(mo):
 @app.cell
 def _(part_dropdown):
     part_dropdown
-
     return
 
 
@@ -34,29 +33,48 @@ def _(part_dropdown):
 
 
 @app.cell
-def _(mo, part):
-    mo.md(f"""## AOC 2015, Day {part}""")
-    return
+def _():
+    from itertools import accumulate
+    def read_input(_,_1):
+        return "(())(())((((()()))))))"
+
+    def solve_part1(directions) -> int:
+        lefts = directions.count("(")
+        rights = directions.count(")")
+
+        return lefts - rights
+
+
+    def parse_as_ints(directions) -> list[int]:
+        ints = [1 if c == "(" else -1 for c in directions]
+        return ints
+
+
+    def solve_part2(directions) -> int:
+        ints = parse_as_ints(directions)
+        accs = list(accumulate(ints))
+        return accs.index(-1) + 1
+
+
+    def part1() -> int:
+        raw_input = read_input(2015, 1)
+        return solve_part1(raw_input)
+
+
+    def part2() -> int | None:
+        raw_input = read_input(2015, 1)
+        return solve_part2(raw_input)
+    return part1, part2
 
 
 @app.cell
-def _(mo, part):
-    mo.md(f"""## Part {part}""")
-    return
+def _(part, part1, part2):
+    if part == 1:
+        res = part1()
+    else:
+        res = part2()
 
-
-@app.cell
-def _(part):
-    def show_a_star():
-        return f"Part {part}: *"
-
-    res1 = show_a_star()
-    return (res1,)
-
-
-@app.cell
-def _(mo, res1):
-    mo.md(rf"""Result: {res1}""")
+    res
     return
 
 

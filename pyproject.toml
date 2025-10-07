@@ -1,0 +1,10 @@
+[project]
+name = "marimo-aoc"
+version = "0.1.0"
+description = "AoC... in marimo!"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "marimo[mcp]>=0.16.5",
+    "watchdog>=6.0.0",
+]

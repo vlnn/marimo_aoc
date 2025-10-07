@@ -6,8 +6,10 @@ The idea is to practice Marimo and to get good platform to show off a bit. I lik
 ## TODO
 
 - [ ] Make at least one day solution as I see it in my ideal world:
-  - [ ] Introductory text from AoC site
-  - [ ] Literate-programming style sources of the solution
+  - [ ] day page template
+    - [ ] Introductory text from AoC site
+    - [ ] Literate-programming style sources of the solution
+    - [ ] Dynamic year/day output in the day template
   - [ ] Dynamic calculations for input examples
   - [ ] Some info for long-running calculations?
   - [ ] Puzzle-specific graphics generated in realtime?
